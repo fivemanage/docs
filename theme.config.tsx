@@ -17,6 +17,19 @@ const config: DocsThemeConfig = {
   footer: {
     text: 'Fivemanage Docs',
   },
+  useNextSeoProps() {
+    return {
+      title: 'Fivemanage Docs',
+      description: 'Fivemanage Docs',
+      openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        url: 'https://docs.fivemanage.com',
+        title: 'Fivemanage Docs',
+        description: 'Fivemanage Docs',
+      }
+    }
+  }
 }
 
 export default config
