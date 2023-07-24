@@ -1,6 +1,7 @@
 {
   "index": "Introduction",
   "images": "Images",
+  "sdk": "Fivemanage SDK for FiveM",
   "about": {
     "title": "About",
     "type": "page"
