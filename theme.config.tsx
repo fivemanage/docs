@@ -27,7 +27,22 @@ const config: DocsThemeConfig = {
         url: 'https://docs.fivemanage.com',
         title: 'Fivemanage Docs',
         description: 'Fivemanage Docs',
-      }
+      },
+      twitter: {
+        handle: '@fivemanage',
+        site: '@fivemanage',
+        cardType: 'summary_large_image',
+      },
+      additionalMetaTags: [
+        {
+            name: 'viewport',
+            content: 'width=device-width, initial-scale=1.0',
+        },
+        {
+            name: 'keywords',
+            content: 'fivemanage, docs, documentation, fivemanage docs, fivemanage documentation, fivem analytics, fivem, fivem server, fivem server analytics, fivem server management, fivem server monitoring, fivem server monitoring, fivem server management',
+        },
+      ]
     }
   }
 }
