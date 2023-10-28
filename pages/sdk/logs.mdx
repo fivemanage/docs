@@ -1,0 +1,40 @@
+import {Tab, Tabs} from "nextra/components";
+
+## Gettings started
+
+With our logs system you can easily set up logs throughout your entire server which you can later inspect in the dashboard.
+
+This feature requires the **Basic** plan from Fivemanage.
+
+## Usage
+
+### LogMessage (server-side)
+
+The `LogMessage` export takes in three arguments. `level`, `message` and `metadata`.
+
+`level` - Values are either `info`, `warn` or `error`
+
+`message` - any string
+
+`metadata` - Can be a table or object with any properties you want. 
+If you provide the `playerSource` as seen below, identifiers for the player will also be sent.
+
+
+<Tabs items={['Lua', 'JavaScript']}>
+    <Tab>
+        ```lua
+        exports.fivemanage_lib:LogMessage('info', "Someone did a bad thing", {
+            playerSource = 1 
+        })
+        ```
+    </Tab>
+    <Tab>
+        ```ts
+        exports.fivemanage_lib.LogMessage('error', "Player robbed the bank", {
+            playerSource = 1
+            bankName = "Main bank"
+            moneyTaken = 9999999
+        })
+        ```
+    </Tab>
+</Tabs>
