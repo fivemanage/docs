@@ -1,0 +1,75 @@
+## Using LB Phone
+
+### Configuring
+
+### Config
+
+First open `lb-phone/config/config.lua` and set all upload methods to `Custom`
+
+```lua
+-- `lb-phone/config/config.lua`
+Config.UploadMethod.Video = "Custom"
+Config.UploadMethod.Image = "Custom"
+Config.UploadMethod.Audio = "Custom"
+```
+
+Now set the API token you got from Fivemanage in `lb-phone/server/apiKeys.lua`
+
+```lua
+-- `lb-phone/server/apiKeys.lua`
+API_KEYS = {
+    Video = "TOKEN",
+    Image = "TOKEN",
+    Audio = "TOKEN",
+}
+```
+
+#### Setting up URLs
+
+Finally, in `lb-phone/shared/upload.lua`, in the `Custom` section:
+```lua
+Custom = {
+    Video = {
+        url = "https://api.fivemanage.com/api/video",
+        field = "video", -- The field name (formData)
+        headers = { -- headers to send when uploading
+            ["Authorization"] = "API_KEY"
+        },
+        error = {
+            path = "success", -- The path to the error value (res.success)
+            value = false -- If the path is equal to this value, it's an error
+        },
+        success = {
+            path = "url" -- The path to the video file (res.url)
+        },
+    },
+    Image = {
+        url = "https://api.fivemanage.com/api/image",
+        field = "image", -- The field name (formData)
+        headers = { -- headers to send when uploading
+            ["Authorization"] = "API_KEY"
+        },
+        error = {
+            path = "success", -- The path to the error value (res.success)
+            value = false -- If the path is equal to this value, it's an error
+        },
+        success = {
+            path = "url" -- The path to the image file (res.url)
+        }
+    },
+    Audio = {
+        url = "https://api.fivemanage.com/api/audio",
+        field = "recording", -- The field name (formData)
+        headers = { -- headers to send when uploading
+            ["Authorization"] = "API_KEY"
+        },
+        error = {
+            path = "success", -- The path to the error value (res.success)
+            value = false -- If the path is equal to this value, it's an error
+        },
+        success = {
+            path = "url" -- The path to the audio file (res.url)
+        }
+    },
+}
+```
