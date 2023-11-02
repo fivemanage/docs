@@ -40,7 +40,7 @@ const config: DocsThemeConfig = {
         },
         {
             name: 'keywords',
-            content: 'fivemanage, docs, documentation, fivemanage docs, fivemanage documentation, fivem analytics, fivem, fivem server, fivem server analytics, fivem server management, fivem server monitoring, fivem server monitoring, fivem server management',
+            content: 'fivemanage, fivemanager, docs, documentation, fivemanage docs, fivemanage documentation, fivem analytics, fivem, fivem server, fivem server analytics, fivem server management, fivem server monitoring, fivem server monitoring, fivem server management',
         },
       ]
     }
