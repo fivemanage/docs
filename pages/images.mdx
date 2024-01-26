@@ -33,6 +33,11 @@ const url = 'https://api.fivemanage.com/api/image';
 const formData = new FormData();
 
 formData.append('image', fs.createReadStream('image.png'));
+// Optional metadata field (JSON string)
+formData.append("metadata", JSON.stringify({
+    name: 'My image',
+    description: 'This is my image',
+}));
 
 axios.post(url, formData, {
     headers: {
