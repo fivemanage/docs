@@ -11,9 +11,12 @@ Then, download the latest release of the SDK and extract it in your resources fo
 
 You can download the latest release [here](https://github.com/fivemanage/sdk/releases)
 
-## Usage
-Add the following to your `server.cfg`:
+
+## Token setup
+1. Create a `media` and `logs` token in the Fivemanage dashboard
+
+Add the following convars to your `server.cfg` with the tokens you got from the dashboard:
 ```
-set FIVEMANAGE_IMAGE_TOKEN your_token
+set FIVEMANAGE_MEDIA_API_KEY your_media_token
+set FIVEMANAGE_LOGS_API_KEY your_logs_token
 ```
-This is the token from Fivemanage for image uploading

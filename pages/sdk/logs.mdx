@@ -12,7 +12,7 @@ This feature requires the **Basic** plan from Fivemanage.
 
 The `LogMessage` export takes in three arguments. `level`, `message` and `metadata`.
 
-`level` - Values are either `info`, `warn` or `error`
+`level` - Any level you want. We recommend using `info`, `warn`, `error` or `debug`, but you can use any string you want.
 
 `message` - any string
 
@@ -20,11 +20,18 @@ The `LogMessage` export takes in three arguments. `level`, `message` and `metada
 If you provide the `playerSource` as seen below, identifiers for the player will also be sent.
 
 
+
 <Tabs items={['Lua', 'JavaScript']}>
     <Tab>
         ```lua
+        exports.fivemanage_lib:LogMessage("error", "Failed to roleplay")
+
+        -- With metadata
         exports.fivemanage_lib:LogMessage('info', "Someone did a bad thing", {
-            playerSource = 1 
+            playerSource = 1, -- All identifiers will be automatically added
+            playerName = "John Doe",
+            coords = {x = 1, y = 2, z = 3},
+            -- or any other field you want
         })
         ```
     </Tab>
