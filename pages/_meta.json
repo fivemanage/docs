@@ -1,6 +1,7 @@
 {
   "index": "Introduction",
-  "images": "Images",
+  "getting-started": "Getting Started",
+  "audio": "Audio",
   "sdk": "Fivemanage SDK for FiveM",
   "integration": "Resource Integration",
   "about": {

@@ -1,0 +1,37 @@
+## Gettings started
+
+### Prerequisites
+
+Make sure you have created a `Logs` token in the dashboard.
+
+
+## Sending logs
+
+`level` - Any level you want. We recommend using `info`, `warn`, `error` or `debug`, but you can use any string you want.
+`message` - any string
+`metadata` - Can be a table or object with any properties you want. 
+
+```js
+const axios = require('axios');
+const fs = require('fs');
+
+const apiKey = 'YOUR_API_TOKEN';
+const url = 'https://api.fivemanage.com/api/logs';
+
+axios.post(url, {
+    level: "info",
+    message: "Hello, this is my amazing log",
+    metadata: {
+        action: "Someone did something <action>"
+    },
+    {
+        headers: {
+            Authorization: apiKey,
+        }
+    }
+}).then(res => {
+    console.log(res.data.url);
+}).catch(err => {
+    console.error(err);
+});
+```
