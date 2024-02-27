@@ -1,5 +1,6 @@
 {
-  "intro": "Introduction",
-  "image": "Images with SDK",
-  "logs": "Logs with SDK"
+	"intro": "Introduction",
+	"install": "Installation & Setup",
+	"image": "Working with Images",
+	"logs": "Working with Logs"
 }

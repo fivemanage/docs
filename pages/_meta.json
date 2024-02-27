@@ -1,17 +1,16 @@
 {
-  "index": "Introduction",
-  "getting-started": "Getting Started",
-  "audio": "Audio",
-  "sdk": "Fivemanage SDK for FiveM",
-  "integration": "Resource Integration",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
-  "contact": {
-    "title": "Contact ↗",
-    "type": "page",
-    "href": "https://discord.gg/wUgAGHnucZ",
-    "newWindow": true
-  }
+	"index": "Introduction",
+	"getting-started": "Getting Started",
+	"sdk": "Fivemanage SDK for FiveM",
+	"integration": "Resource Integration",
+	"about": {
+		"title": "About",
+		"type": "page"
+	},
+	"contact": {
+		"title": "Contact ↗",
+		"type": "page",
+		"href": "https://discord.gg/wUgAGHnucZ",
+		"newWindow": true
+	}
 }
