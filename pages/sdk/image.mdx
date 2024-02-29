@@ -1,29 +1,89 @@
+## Working with Images
+
+This section provides examples of how to use the `takeImage` and `takeServerImage` exports on the client and server sides, respectively.
+
+Examples are provided in both Lua and JavaScript. TypeScript developers can refer to the type annotations provided in the function definitions for guidance on the expected argument and return types.
+
 ### Client Exports
+
+**Function Definition:**
+
+```typescript
+takeImage(metadata?: Record<string, unknown>): Promise<{ url: string }>
+```
+
+**Lua Example:**
+
 ```lua
-local imageData = exports.fivemanage_lib:takeImage()
+local imageData = exports.fmsdk:takeImage()
 
 -- With metadata
-
-local imageData = exports.fivemanage_lib:takeImage({
+local imageData = exports.fmsdk:takeImage({
     name = "My image",
     description = "This is my image",
     -- or any other field you want
 })
 
-print(image.url)
+print(imageData.url)
+```
+
+**JavaScript Example:**
+
+```javascript
+exports.fmsdk.takeImage().then((imageData) => {
+  console.log(imageData.url);
+});
+
+// With metadata
+exports.fmsdk
+  .takeImage({
+    name: "My image",
+    description: "This is my image",
+    // or any other field you want
+  })
+  .then((imageData) => {
+    console.log(imageData.url);
+  });
 ```
 
 ### Server Exports
+
+**Function Definition:**
+
+```typescript
+takeServerImage(playerSource: string | number, metadata?: Record<string, unknown>): Promise<{ url: string }>
+```
+
+**Lua Example:**
+
 ```lua
-local imageData = exports.fivemanage_lib:takeServerImage(src)
+local imageData = exports.fmsdk:takeServerImage(playerSource)
 
 -- With metadata
-
-local imageData = exports.fivemanage_lib:takeServerImage(src, {
+local imageData = exports.fmsdk:takeServerImage(playerSource, {
     name = "My image",
     description = "This is my image",
     -- or any other field you want
 })
 
-print(image.url)
+print(imageData.url)
+```
+
+**JavaScript Example:**
+
+```javascript
+exports.fmsdk.takeServerImage(playerSource).then((imageData) => {
+  console.log(imageData.url);
+});
+
+// With metadata
+exports.fmsdk
+  .takeServerImage(playerSource, {
+    name: "My image",
+    description: "This is my image",
+    // or any other field you want
+  })
+  .then((imageData) => {
+    console.log(imageData.url);
+  });
 ```

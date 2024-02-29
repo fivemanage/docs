@@ -1,47 +1,49 @@
-import {Tab, Tabs} from "nextra/components";
+## Working with Logs
 
-## Gettings started
+This section provides examples of how to use the `LogMessage` export on the server. It also includes explanations of the various settings within `config.json`, detailing how each can be configured to customize logging functionality.
 
-With our logs system you can easily set up logs throughout your entire server which you can later inspect in the dashboard.
+Examples are provided in both Lua and JavaScript. TypeScript developers can refer to the type annotations provided in the function definitions for guidance on the expected argument and return types.
 
-This feature requires the **Basic** plan from Fivemanage.
+### Config Settings:
 
-## Usage
+- **"level"**: Sets the minimum log level to capture. "info" by default, meaning only logs of "info" level and above are recorded. **This value must be one of the options defined in the "levels" array**.
 
-### LogMessage (server-side)
+- **"levels"**: Defines the hierarchy of log levels from most to least critical. Only levels included in this array can be used during runtime.
 
-The `LogMessage` export takes in three arguments. `level`, `message` and `metadata`.
+- **"console"**: Enables or disables logging to the server console. Set to `true` to activate console logging.
 
-`level` - Any level you want. We recommend using `info`, `warn`, `error` or `debug`, but you can use any string you want.
+- **"enableCloudLogging"**: Determines whether logs should be sent to the Fivemanage cloud. Set to `false` to keep logs local or `true` to enable cloud logging.
 
-`message` - any string
+- **"appendPlayerIdentifiers"**: When `true`, player identifiers are automatically appended to the log's metadata if `metadata.playerSource` and/or `metadata.targetSource` are specified.
 
-`metadata` - Can be a table or object with any properties you want. 
-If you provide the `playerSource` as seen below, identifiers for the player will also be sent.
+### Server Exports
 
+**Function Definition:**
 
+```typescript
+LogMessage(level: string, message: string, metadata?: { playerSource?: string | number, targetSource?: string | number, [key: string]: unknown }): void
+```
 
-<Tabs items={['Lua', 'JavaScript']}>
-    <Tab>
-        ```lua
-        exports.fivemanage_lib:LogMessage("error", "Failed to roleplay")
+**Lua Example:**
 
-        -- With metadata
-        exports.fivemanage_lib:LogMessage('info', "Someone did a bad thing", {
-            playerSource = 1, -- All identifiers will be automatically added
-            playerName = "John Doe",
-            coords = {x = 1, y = 2, z = 3},
-            -- or any other field you want
-        })
-        ```
-    </Tab>
-    <Tab>
-        ```ts
-        exports.fivemanage_lib.LogMessage('error', "Player robbed the bank", {
-            playerSource = 1
-            bankName = "Main bank"
-            moneyTaken = 9999999
-        })
-        ```
-    </Tab>
-</Tabs>
+```lua
+exports.fmsdk:LogMessage("info", "Player connected", {
+    playerSource = source,
+    customData = "Additional info"
+})
+
+-- Without metadata
+exports.fmsdk:LogMessage("error", "An error occurred")
+```
+
+**JavaScript Example:**
+
+```javascript
+exports.fmsdk.LogMessage("info", "Player connected", {
+  playerSource: player.id,
+  customData: "Additional info",
+});
+
+// Without metadata
+exports.fmsdk.LogMessage("error", "An error occurred");
+```
