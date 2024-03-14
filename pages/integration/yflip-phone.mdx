@@ -1,0 +1,32 @@
+
+import { Callout } from 'nextra/components';
+
+# YFlip Phone
+
+<Callout type="warning" emoji="⚠️">
+    This requires YFlip Phone 0.10.0 or higher
+</Callout>
+### Configuring
+
+```lua
+-- config/config.upload.lua
+Config.Upload.Method = {
+    Image = "Fivemanage",
+    Video = "Fivemanage",
+    Audio = "Fivemanage"
+}
+```
+
+```lua
+--config/config.upload.lua
+Config.Upload.ApiKeys = {
+    Image = "TOKEN_HERE",
+    Video = "TOKEN_HERE",
+    Audio = "TOKEN_HERE"
+}
+```
+
+
+<video width="100%" controls>
+    <source src="https://r2.fivemanage.com/fivemanage_yflip_tutorial.mp4" type="video/mp4" />
+</video>
