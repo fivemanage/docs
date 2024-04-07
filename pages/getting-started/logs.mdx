@@ -1,3 +1,6 @@
+import Image from 'next/image'
+import { Callout } from 'nextra/components'
+
 ## Gettings started
 
 ### Prerequisites
@@ -35,3 +38,49 @@ axios.post(url, {
     console.error(err);
 });
 ```
+
+## Using the Dashboard
+
+<Callout type="warning">
+    The logs dashboard still has some missing features, like pagination and sorting. We are working on adding these features.
+</Callout>
+
+Using the logs dashboard is very simple. You can access it at `https://fivemanage.com` and login with your account, and then click on the `Logs` table.
+
+<Callout type="info">
+    Any member you add will have access to the logs dashboard.
+</Callout>
+
+<img src="https://r2.fivemanage.com/internal%2Flogging_dashboard2.png" style={{ marginTop: 8 }} />
+
+### Searching
+
+You can search for logs by clicking on the plus icon in the search bar. You can search by `message`, `resource` and any `metadata` property you want. These will show up in the dropdown when you click on the filter button.
+Metadata properties are based on the properties you send in the logs.
+
+<img src="https://r2.fivemanage.com/internal%2Flogging_search.png" style={{ marginTop: 4}}  />
+<img src="https://r2.fivemanage.com/internal%2Flogging_search2.png" style={{ marginTop: 4}}  />
+
+#### Filtering
+
+You can filter logs by `level` and `date range`. The levels are based on the levels you send in the logs.
+
+##### Level
+
+<img src="https://r2.fivemanage.com/internal%2Flogging_filter.png" style={{ marginTop: 4}}  />
+
+##### Date range
+<img src="https://r2.fivemanage.com/internal%2Flogging_date.png" style={{ marginTop: 4}}  />
+
+### Viewing single log
+
+Clicking on a log will show you the full log details.
+
+<img src="https://r2.fivemanage.com/internal%2Flogging_item2.png" style={{ marginTop: 4}}  />
+
+
+#### Metadata
+
+You can also search for the metadata, and nested values. This examples searches for the `value2` value in the `array` property within the `nestedExample` object (see image above)
+
+<img src="https://r2.fivemanage.com/internal%2Flogging_nestedsearch.png" style={{ marginTop: 4}}  />
