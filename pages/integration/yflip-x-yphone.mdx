@@ -1,10 +1,9 @@
-
 import { Callout } from 'nextra/components';
 
-# YFlip Phone
+# YSeries | YFlip | YPhone
 
 <Callout type="warning" emoji="⚠️">
-    This requires YFlip Phone 0.10.0 or higher
+    This requires YSeries | YFlip | YPhone 0.10.0 or higher
 </Callout>
 ### Configuring
 
@@ -18,15 +17,15 @@ Config.Upload.Method = {
 ```
 
 ```lua
---config/config.upload.lua
-Config.Upload.ApiKeys = {
+--server\apiKeys.lua
+ApiKeys = {
     Image = "TOKEN_HERE",
     Video = "TOKEN_HERE",
     Audio = "TOKEN_HERE"
 }
 ```
 
-You can read more about the configuring YFlip/YPhone [here](https://docs.yseries.live/configure#camera).
+You can read more about configuring YSeries | YFlip | YPhone [here](https://docs.yseries.live/phone/configure#camera).
 
 
 <video width="100%" style={{ marginTop: 10 }} controls>
