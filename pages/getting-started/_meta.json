@@ -1,7 +1,8 @@
 {
-  "index": "Setup",
-  "images": "Images",
-  "audio": "Audio",
-  "video": "Video",
-  "logs": "Logs"
+	"index": "Setup",
+	"images": "Images",
+	"audio": "Audio",
+	"video": "Video",
+	"logs": "Logs",
+	"presigned-url": "Presigned URLs"
 }

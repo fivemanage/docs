@@ -3,7 +3,7 @@
 ### Getting started
 In order to send vidoes to the Video API, you can do so by sending a POST request to the https://api.fivemanage.com/api/video endpoint.
 
-To upload video, simply submit a form with a form field called `video` with your video as value. As well as metadata.
+To upload video, simply submit a form with a form field called `file` with your video as value. As well as metadata.
 
 #### Examples
 ```js
@@ -15,7 +15,7 @@ const url = 'https://api.fivemanage.com/api/video';
 
 const formData = new FormData();
 
-formData.append('video', yourVideoBlob);
+formData.append('file', yourVideoBlob);
 // Optional metadata field (JSON string)
 formData.append("metadata", JSON.stringify({
     name: 'My video',

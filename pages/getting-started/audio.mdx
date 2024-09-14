@@ -3,7 +3,7 @@
 ### Getting started
 In order to send audio to the Audio API, you can do so by sending a POST request to the https://api.fivemanage.com/api/audio endpoint.
 
-To upload audio, simply submit a form with a form field called `recording` with your audio as value.
+To upload audio, simply submit a form with a form field called `file` with your audio as value.
 
 A lot like images, audio uploads also allow for metadata through the `metadata` form field.
 
@@ -17,7 +17,7 @@ const url = 'https://api.fivemanage.com/api/audio';
 
 const formData = new FormData();
 
-formData.append('recording', yourAudioBlob);
+formData.append('file', yourAudioBlob);
 // Optional metadata field (JSON string)
 formData.append("metadata", JSON.stringify({
     name: 'My audio',

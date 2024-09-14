@@ -12,7 +12,7 @@ You need to send an `Authorization` header with your API key.
 You can also send your API key as a query parameter `?apiKey=`. This is useful if you are using the Image API in a browser.
 
 #### Body
-The body of the request should be a form-data object with a file named `image`.
+The body of the request should be a form-data object with a file named `file` or `image`.
 
 ### Examples
 ```js
@@ -24,7 +24,7 @@ const url = 'https://api.fivemanage.com/api/image';
 
 const formData = new FormData();
 
-formData.append('image', fs.createReadStream('image.png'));
+formData.append('file', fs.createReadStream('image.png'));
 // Optional metadata field (JSON string)
 formData.append("metadata", JSON.stringify({
     name: 'My image',
@@ -54,7 +54,7 @@ There are a few ways to upload an image to the Image API. The easiest way is to 
         ##### Using headers
         ```lua
         exports['screenshot-basic']:requestScreenshotUpload('https://api.fivemanage.com/api/image',
-        'image',
+        'file',
         {
             headers = {
                 Authorization = "YOUR_API_TOKEN"
@@ -70,7 +70,7 @@ There are a few ways to upload an image to the Image API. The easiest way is to 
 
         ##### Using query parameters
         ```lua
-        exports['screenshot-basic']:requestScreenshotUpload('https://api.fivemanage.com/api/image?apiKey=YOUR_API_TOKEN', 'image', function(data)
+        exports['screenshot-basic']:requestScreenshotUpload('https://api.fivemanage.com/api/image?apiKey=YOUR_API_TOKEN', 'file', function(data)
             local resp = json.decode(data)
             if resp then
                 print(resp.url)

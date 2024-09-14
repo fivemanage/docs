@@ -1,0 +1,105 @@
+import { Steps } from 'nextra/components'
+import { Tabs, Callout }  from 'nextra/components'
+
+# Presigned URLs
+
+Presigned URLs is the safest way to upload files through the client. One example is from NUI in FiveM, where you otherwise would expose the token to every client if you're not using a presigned URL,
+or uploading your files from the server.
+
+
+To get a presigned URL, you first need to request for it. Here we'll go through how you'd do it.
+
+<Steps>
+### Request the presigned URL
+
+Start by performing a `GET` request on the server. This needs to contain the endpoint and your API token.
+
+The `?fileType` param can be `image`, `audio` or `video`. 
+
+<Callout>
+    We plan to remove this `?fileType` param in our next version of the API.
+</Callout>
+
+<Tabs items={['cURL', 'Node']}>
+    <Tabs.Tab>
+        ```curl
+        curl --request GET \
+          --url 'https://api.fivemanage.com/api/presigned-url?fileType=image' \
+          --header 'Authorization: YOUR_API_TOKEN' \
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        ```js
+        const options = {
+          method: 'GET',
+          headers: {
+            'User-Agent': 'YOUR_SERVICE',
+            Authorization: 'YOUR_API_TOKEN'
+          }
+        };
+
+        fetch('https://api.fivemanage.com/api/presigned-url?fileType=image', options)
+          .then(response => response.json())
+          .then(response => console.log(response))
+          .catch(err => console.error(err));
+        ```
+    </Tabs.Tab>
+
+</Tabs>
+
+You will then get a response that looks like this:
+```json
+{
+	"presignedUrl": "https://api.fivemanage.com/api/presigned-url/iCyMnIkzF423RQr88Hppo"
+}
+```
+
+This is the url that you will be using in order to upload the file.
+
+### Uploading files
+
+Once you have this URL, you can then use it to upload a file like you might previously have done, but without a `Authorization` header.
+
+
+<Tabs items={['cURL', 'Node']}>
+    <Tabs.Tab>
+        ```curl
+        curl --request POST \
+          --url https://api.fivemanage.com/api/presigned-url/iCyMnIkzF423RQr88Hppo \
+          --header 'Content-Type: multipart/form-data' \
+          --form file=path/to/your/file.png
+        ```
+    </Tabs.Tab>
+    <Tabs.Tab>
+        
+    ```js
+    const axios = require('axios');
+    const fs = require('fs');
+     
+    const url = 'https://api.fivemanage.com/api/presigned-url/iCyMnIkzF423RQr88Hppo';
+     
+    const formData = new FormData();
+     
+    formData.append('file', fs.createReadStream('image.png'));
+    // Optional metadata field (JSON string)
+    formData.append("metadata", JSON.stringify({
+        name: 'My image',
+        description: 'This is my image',
+    }));
+     
+    axios.post(url, formData).then(res => {
+        console.log(res.data.url);
+    }).catch(err => {
+        console.error(err);
+    });
+    ```
+    </Tabs.Tab>
+</Tabs>
+
+#### Response
+```json
+{"id":"51Q3Uiqv4vERup113MZ0I","url":"https://r2.fivemanage.com/images/FKmUoQUAFkAz.jpg"}
+````
+
+</Steps>
+
