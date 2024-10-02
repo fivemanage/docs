@@ -14,7 +14,8 @@ You can also send your API key as a query parameter `?apiKey=`. This is useful i
 #### Body
 The body of the request should be a form-data object with a file named `file` or `image`.
 
-### Examples
+### Uploading an image
+
 ```js
 const axios = require('axios');
 const fs = require('fs');
@@ -42,8 +43,41 @@ axios.post(url, formData, {
 });
 ```
 
+#### Response
+##### Success
+```json
+{
+    "url": "https://r2.fivemanage.com/images/1234567890",
+    "id": "0987654321"
+}
+```
 
-### FiveM
+### Deleting an image
+When we want to delete an image, we can do so by sending a DELETE request to the https://api.fivemanage.com/api/image/:id endpoint.
+
+The `:id` parameter should be the ID of the image you want to delete. You can get the ID from the response when you upload an image (see above).
+
+```js
+import axios from "axios";
+
+const options = {
+  method: 'DELETE',
+  url: 'http://api.fivemanage.com/api/image/delete/0987654321',
+  headers: {
+    Authorization: 'YOUR_API_TOKEN'
+  }
+};
+
+axios.request(options).then(function (response) {
+  console.log(response.data);
+}).catch(function (error) {
+  console.error(error);
+});
+```
+
+
+### Games & Mods
+#### FiveM
 
 There are a few ways to upload an image to the Image API. The easiest way is to use [Screenshot Basic](https://github.com/citizenfx/screenshot-basic).
 

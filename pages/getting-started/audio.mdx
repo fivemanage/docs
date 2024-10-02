@@ -7,7 +7,7 @@ To upload audio, simply submit a form with a form field called `file` with your 
 
 A lot like images, audio uploads also allow for metadata through the `metadata` form field.
 
-#### Examples
+### Uploading audio
 ```js
 const axios = require('axios');
 const fs = require('fs');
@@ -33,5 +33,39 @@ axios.post(url, formData, {
     console.log(res.data.url);
 }).catch(err => {
     console.error(err);
+});
+```
+
+
+#### Response
+##### Success
+```json
+{
+    "url": "https://r2.fivemanage.com/audio/1234567890",
+    "id": "0987654321"
+}
+```
+
+
+### Deleting audio
+When we want to delete audio, we can do so by sending a DELETE request to the https://api.fivemanage.com/api/audio/:id endpoint.
+
+The `:id` parameter should be the ID of the audio file you want to delete. You can get the ID from the response when you upload the audio file (see above).
+
+```js
+import axios from "axios";
+
+const options = {
+  method: 'DELETE',
+  url: 'http://api.fivemanage.com/api/audio/delete/0987654321',
+  headers: {
+    Authorization: 'YOUR_API_TOKEN'
+  }
+};
+
+axios.request(options).then(function (response) {
+  console.log(response.data);
+}).catch(function (error) {
+  console.error(error);
 });
 ```
