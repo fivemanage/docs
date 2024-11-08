@@ -1,0 +1,151 @@
+## Fivemanage SDK
+
+The Fivemanage SDK allows you to interact with the Fivemanage API to upload and delete files, retrieve presigned URLs, and log messages.
+
+### Setup
+
+To use the Fivemanage SDK, you need to install it via npm:
+
+```bash
+pnpm install @fivemanage/sdk
+```
+
+### Constructing the Client
+
+To construct the `FivemanageClient`, you need to provide your API token:
+
+```ts
+import { FivemanageClient } from '@fivemanage/sdk';
+
+const client = new FivemanageClient('YOUR_API_TOKEN');
+```
+
+### Methods
+
+#### `getPresignedUrl`
+
+Retrieves a presigned URL for uploading a file of the specified type.
+
+```ts
+async getPresignedUrl(
+  fileType: "image" | "audio" | "video"
+): Promise<string>
+```
+
+**Parameters:**
+
+- `fileType`: The type of the file. It can be `"image"`, `"audio"`, or `"video"`.
+
+**Example:**
+
+```ts
+const presignedUrl = await client.getPresignedUrl('image');
+console.log(presignedUrl);
+```
+
+#### `log`
+
+Logs a message to the Fivemanage API.
+
+```ts
+async log(
+  level: string,
+  message: string,
+  metadata: Record<string, unknown>
+): Promise<unknown>
+```
+
+**Parameters:**
+
+- `level`: The log level (e.g., `"info"`, `"error"`).
+- `message`: The log message.
+- `metadata`: Additional metadata for the log.
+
+**Example:**
+
+```ts
+await client.log('info', 'This is a log message', { action: 'test' });
+```
+
+#### `uploadFile`
+
+Uploads a file to the Fivemanage API.
+
+```ts
+async uploadFile(
+  fileType: "image" | "audio" | "video",
+  file: Blob | File,
+  metadata?: Record<string, unknown>
+): Promise<unknown>
+```
+
+**Parameters:**
+
+- `fileType`: The type of the file. It can be `"image"`, `"audio"`, or `"video"`.
+- `file`: The file to be uploaded. It should be a `Blob` or `File` object.
+- `metadata` (optional): Additional metadata for the file.
+
+**Example:**
+
+```ts
+const file = new Blob([fs.readFileSync('path/to/image.png')], { type: 'image/png' });
+
+const response = await client.uploadFile('image', file, {
+  name: 'My image',
+  description: 'This is my image',
+});
+console.log(response.url);
+```
+
+#### `deleteFile`
+
+Deletes a file from the Fivemanage API.
+
+```ts
+async deleteFile(
+  fileType: "image" | "audio" | "video",
+  id: string
+): Promise<unknown>
+```
+
+**Parameters:**
+
+- `fileType`: The type of the file. It can be `"image"`, `"audio"`, or `"video"`.
+- `id`: The ID of the file to be deleted.
+
+**Example:**
+
+```ts
+const response = await client.deleteFile('image', '0987654321');
+console.log(response.message);
+```
+
+### Full Example
+
+Here is a full example demonstrating how to use the Fivemanage SDK:
+
+```ts
+import { FivemanageClient } from '@fivemanage/sdk';
+import fs from 'fs';
+
+const client = new FivemanageClient('YOUR_API_TOKEN');
+
+// Get a presigned URL
+const presignedUrl = await client.getPresignedUrl('image');
+console.log(presignedUrl);
+
+// Log a message
+await client.log('info', 'This is a log message', { action: 'test' });
+
+// Upload a file
+const file = new Blob([fs.readFileSync('path/to/image.png')], { type: 'image/png' });
+const uploadResponse = await client.uploadFile('image', file, {
+  name: 'My image',
+  description: 'This is my image',
+});
+console.log(uploadResponse.url);
+
+// Delete a file
+const deleteResponse = await client.deleteFile('image', '0987654321');
+console.log(deleteResponse.message);
+```

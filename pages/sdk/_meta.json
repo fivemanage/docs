@@ -1,6 +1,4 @@
 {
-	"intro": "Introduction",
-	"install": "Installation & Setup",
-	"image": "Working with Images",
-	"logs": "Working with Logs"
+    "fivem": "FiveM",
+	"node-sdk": "Node SDK"
 }
