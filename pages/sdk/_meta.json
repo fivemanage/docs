@@ -1,4 +1,5 @@
 {
-    "fivem": "FiveM",
-	"node-sdk": "Node SDK"
+    "fivem": "FiveM SDK",
+	"node-sdk": "Node SDK",
+    "roblox-sdk": "Roblox SDK"
 }

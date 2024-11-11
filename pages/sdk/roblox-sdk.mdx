@@ -1,0 +1,111 @@
+# Fivemanage Roblox SDK
+
+Welcome to the documentation for the Fivemanage Roblox SDK. This module allows Roblox developers to integrate their games with the Fivemanage API to handle logging and make HTTP requests seamlessly.
+
+## Installation
+
+To use the Fivemanage Roblox SDK, insert the module into your game using the following asset ID:
+
+```lua
+local FivemanageAPI = require(135706004990906)
+```
+
+## Getting Started
+
+### Creating an Instance of the FivemanageAPI
+
+To start using the SDK, create a new instance of the `FivemanageAPI` module:
+
+```lua
+local options = {
+    apiKey = "YOUR_API_KEY", -- Required: Your Fivemanage API key
+    enableErrorLogging = true, -- Optional: Enable error logging (default is true)
+    logLevels = {Enum.MessageType.MessageError, Enum.MessageType.MessageWarning} -- Optional: Specify log levels
+}
+
+local api = FivemanageAPI.new(options)
+```
+
+**Parameters**:
+
+- `apiKey (string)`: Your unique API key for authentication (required).
+- `enableErrorLogging (boolean)`: Automatically logs errors when set to `true` (default is `true`).
+- `logLevels (table)`: Specifies which message levels are logged (default is `{Enum.MessageType.MessageError}`).
+
+**Throws**:
+- An error if HTTP requests are not enabled for the game. Ensure HTTP requests are enabled in **Game Settings > Security**.
+
+## Methods
+
+### Sending HTTP Requests
+
+Send HTTP requests to the Fivemanage API.
+
+**Method**:
+```lua
+api:_request(endpoint, method, body)
+```
+
+**Parameters**:
+- `endpoint (string)`: The endpoint path for the API.
+- `method (string)`: The HTTP method (`"POST"` or `"GET"`).
+- `body (table)`: The request body (optional, JSON encoded).
+
+**Returns**:
+- A decoded JSON response table if successful.
+- An error message string if the request fails.
+
+### Logging Custom Messages
+
+Send custom log messages to the Fivemanage API.
+
+**Method**:
+```lua
+api:log(level, message, metadata)
+```
+
+**Parameters**:
+- `level (string)`: The log level (`"info"`, `"warning"`, `"error"`).
+- `message (string)`: The message to log.
+- `metadata (table)`: Additional metadata (optional).
+
+**Example**:
+```lua
+api:log("error", "An unexpected error occurred.", {errorId = 123})
+```
+
+**Returns**:
+- The response from the Fivemanage API.
+
+## Example Usage
+
+```lua
+local FivemanageAPI = require(135706004990906)
+
+local api = FivemanageAPI.new({
+    apiKey = "YOUR_API_KEY",
+    enableErrorLogging = true,
+    logLevels = {Enum.MessageType.MessageError, Enum.MessageType.MessageWarning}
+})
+
+-- Logging a custom message
+api:log("info", "Player joined the game", {playerName = "User123"})
+
+-- Sending a GET request
+local response, err = api:_request("/api/endpoint", "GET")
+if response then
+    print("Response received:", response)
+else
+    warn("Error occurred:", err)
+end
+```
+
+## Troubleshooting
+
+- Ensure HTTP requests are enabled for your game in **Game Settings > Security**.
+- Verify your API key is valid and correctly set.
+- Check that the `require` ID is correct when importing the module.
+
+## Support
+
+For more information or support, contact the support team.
