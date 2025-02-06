@@ -1,0 +1,17 @@
+# TGIANN
+
+1. Open tgiann-core\configs\screenshotConfig.lua
+2. Set screenshot.fivemManage.active to true
+3. Set your Fivemanage API key in screenshot.fivemManage.api
+
+```lua
+screenshot = {
+    fivemanage     = {  -- https://fivemanage.com
+        active = false, -- Set to true to enable fivemanage
+        api = '',       -- Fivemmanage API Key
+    },
+    discordWebhook = "" -- if 'fivemanage' is active this will be ignored
+}
+````
+
+You can read more about integration with Fivemanage [here](https://docs.tgiann.com/)
