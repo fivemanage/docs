@@ -1,0 +1,17 @@
+# RX ReportsPRO
+
+#Setup Screenshots
+To make screenshots work, you have to configure it. Currently we are only supporting Fivemanage in order to save & retrieve screenshots. Follow the guide below in order to activate screenshots in your script.
+
+## FiveManage
+- Create an account at: https://fivemanage.com/
+- Go to Tokens and press Create new token
+- Type of token: Images only, name can be anything.
+
+## Screenshot
+- Copy the token and go to RxReportsPRO/config/sv_config.lua
+- Scroll down to the bottom and paste your token in Config.FIVEMANAGE_API_KEY = 'token_here'
+- Confirm that your config value looks in the same format like below.
+```lua
+Config.FIVEMANAGE_API_KEY = 'your_token'
+```
